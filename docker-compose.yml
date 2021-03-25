@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  web_flask:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+    environment:
+      TZ: "Asia/Tokyo"
+      FLASK_ENV: "development"
+    command: python3 app/app.py
