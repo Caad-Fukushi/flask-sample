@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% if alert_msg %}
+<script type="text/javascript">
+    M.toast({html: "{{alert_msg}}"})
+</script>
+{% endif %}
+<table border="1">
+    <tr>
+        <th>タスクを登録してください。</th>
+    </tr>
+    {% for i in lists %}
+    <tr>
+        <td>{{i[0]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<form action="/add" method="POST">
+    <div class="input-field">
+        <input name="task_name" id="task_name" type="text" class="validate">
+        <label for="task_name">タスク</label>
+    </div>
+    <div class="input-field">
+        <textarea id="textarea1" name="task_description" class="materialize-textarea"></textarea>
+        <label for="textarea1">説明</label>
+    </div>
+    <input class="waves-effect waves-light blue btn" type="submit" value="登録">
+    <a href="/" class="waves-effect waves-light green btn">一覧へ戻る</a>
+</form>
+{% endblock %}
