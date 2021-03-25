@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+{% if alert_msg %}
+<script type="text/javascript">
+    M.toast({html: "{{alert_msg}}"})
+</script>
+{% endif %}
+<table class="striped">
+    <thead>
+      <tr>
+          <th>
+          </th>
+          <th>タスク名</th>
+          <th>説明</th>
+          <th>作成日時</th>
+          <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for task in tasks %}
+      <tr>
+        <td>
+            <label>
+                <input type="checkbox" name="testdone" id="{{task.id}}" />
+                <span></span>
+            </label>
+        </td>
+        <td>
+            <a href="task/{{task.id}}" class="collection-item">{{task.name}}</a>
+        </td>
+        <td>
+            <a href="task/{{task.id}}" class="collection-item">{{task.description}}</a>
+        </td>
+        <td>
+            <a href="task/{{task.id}}" class="collection-item">{{'{0:%Y/%m/%d %H:%M:%S}'.format(task.create_datetime)}}</a>
+        </td>
+        <td>
+            <a href="delete/{{task.id}}" class="waves-effect waves-light red btn">完了</a>
+        </td>
+        <td>
+            <a href="delete/{{task.id}}" class="waves-effect waves-light red btn">削除</a>
+        </td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  <a class="btn-floating btn-large waves-effect waves-light right black" href="/add"><i class="material-icons">add</i></a>
+{% endblock %}
